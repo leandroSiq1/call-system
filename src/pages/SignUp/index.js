@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import { AuthContext } from '../../contexts/auth';
 import { Container, BoxLogin, Logo, } from './styles';
 
 import logo from '../../assets/logo.png';
@@ -10,9 +11,17 @@ export function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { signUp, loadingAuth } = useContext(AuthContext);
+
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Chegueeeeeeeeeeeei");
+    
+    if (![name, email, password].includes('')) {
+      signUp(name, email, password);
+
+    } else {
+      alert("Preencha todos os campos!");
+    }
   }
 
   return (
@@ -46,7 +55,7 @@ export function SignUp() {
             onChange={(event) => setPassword(event.target.value)}
           />
 
-          <button type="submit">Cadastrar</button>
+          <button type="submit">{ loadingAuth ? "Carregando..." : "Cadastrar" }</button>
         </form>
 
         <Link to="/">Já possui uma conta?</Link>
