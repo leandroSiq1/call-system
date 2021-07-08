@@ -4,6 +4,7 @@ import { RouteWrapper } from './Route';
 import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';
 import { Dashboard } from '../pages/Dashboard';
+import { Profile } from '../pages/Profile';
 
 export function Routes() {
   return (
@@ -12,6 +13,7 @@ export function Routes() {
       <RouteWrapper exact path="/register" component={SignUp} />
       
       <RouteWrapper exact path="/dashboard" component={Dashboard} isPrivate />
+      <RouteWrapper exact path="/profile" component={Profile} isPrivate />
     </Switch>
   );
 }
